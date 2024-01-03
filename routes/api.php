@@ -19,18 +19,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('auth/{provider}/redirect', [SocialiteController::class, 'redirect'])->name('socialite.redirect');
 Route::get('auth/{provider}/callback', [SocialiteController::class, 'callback'])->name('socialite.callback');
 
-Route::group(['middleware' => ['auth:sanctum', 'is_admin'], 'prefix' => 'admin'], function () {
-    Route::get('get-all-category', [CategoryController::class, 'index'])->name('category.index');
-    Route::post('store-category', [CategoryController::class, 'store'])->name('category.store');
-    Route::put('{id}/update-category', [CategoryController::class, 'update'])->name('category.update');
-    Route::delete('{id}/delete-category', [CategoryController::class, 'delete'])->name('category.delete');
-    Route::get('{id}/get-all-descendants-and-self-category', [CategoryController::class, 'getAllDescendantsAndSelf'])->name('category.get-all-descendants-and-self');
+// Route::group(['middleware' => ['auth:sanctum', 'is_admin'], 'prefix' => 'admin'], function () {
+Route::get('category', [CategoryController::class, 'index'])->name('category.index');
+Route::post('category', [CategoryController::class, 'store'])->name('category.store');
+Route::put('{id}/category', [CategoryController::class, 'update'])->name('category.update');
+Route::delete('{id}/category', [CategoryController::class, 'delete'])->name('category.delete');
+Route::get('{id}/category/descendants', [CategoryController::class, 'getAllDescendantsAndSelf'])->name('category.get-all-descendants-and-self');
 
-    Route::get('get-all-product', [ProductController::class, 'index'])->name('product.index');
-    Route::post('store-product', [ProductController::class, 'store'])->name('product.store');
-    Route::put('{id}/update-product', [ProductController::class, 'update'])->name('product.update');
-    Route::delete('{id}/delete-product', [ProductController::class, 'delete'])->name('product.delete');
-});
+Route::get('product', [ProductController::class, 'index'])->name('product.index');
+Route::post('product', [ProductController::class, 'store'])->name('product.store');
+Route::put('{id}/product', [ProductController::class, 'update'])->name('product.update');
+Route::delete('{id}/product', [ProductController::class, 'delete'])->name('product.delete');
+// });
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('auth-user', [SocialiteController::class, 'authUser'])->name('socialite.auth-user');
