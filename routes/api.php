@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\APIs\Admin\CategoryController;
 use App\Http\Controllers\APIs\Admin\ProductController;
+use App\Http\Controllers\APIs\Admin\UserController;
 use App\Http\Controllers\APIs\Auth\SocialiteController;
+use App\Http\Controllers\APIs\Auth\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,22 +18,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('register', [UserController::class, 'store'])->name('user.store');
+Route::post('login', [AuthenticationController::class, 'store'])->name('user.store');
+
 Route::get('auth/{provider}/redirect', [SocialiteController::class, 'redirect'])->name('socialite.redirect');
 Route::get('auth/{provider}/callback', [SocialiteController::class, 'callback'])->name('socialite.callback');
-
-// Route::group(['middleware' => ['auth:sanctum', 'is_admin'], 'prefix' => 'admin'], function () {
 Route::get('category', [CategoryController::class, 'index'])->name('category.index');
-Route::post('category', [CategoryController::class, 'store'])->name('category.store');
 Route::put('{id}/category', [CategoryController::class, 'update'])->name('category.update');
 Route::delete('{id}/category', [CategoryController::class, 'delete'])->name('category.delete');
 Route::get('{id}/category/descendants', [CategoryController::class, 'getAllDescendantsAndSelf'])->name('category.get-all-descendants-and-self');
+Route::post('category', [CategoryController::class, 'store'])->name('category.store');
 
 Route::get('product', [ProductController::class, 'index'])->name('product.index');
 Route::post('product', [ProductController::class, 'store'])->name('product.store');
 Route::put('{id}/product', [ProductController::class, 'update'])->name('product.update');
 Route::delete('{id}/product', [ProductController::class, 'delete'])->name('product.delete');
-// });
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::get('auth-user', [SocialiteController::class, 'authUser'])->name('socialite.auth-user');
-});
+    // Route::group(['middleware' => 'auth:api'], function () {
+    //     Route::get('auth-user', [SocialiteController::class, 'authUser'])->name('socialite.auth-user');
+    // });
