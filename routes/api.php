@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\APIs\Admin\CategoryController;
 use App\Http\Controllers\APIs\Admin\ProductController;
+use App\Http\Controllers\APIs\Admin\CartProductController;
+use App\Http\Controllers\APIs\Admin\CartController;
 use App\Http\Controllers\APIs\Admin\UserController;
 use App\Http\Controllers\APIs\Auth\SocialiteController;
 use App\Http\Controllers\APIs\Auth\AuthenticationController;
@@ -35,6 +37,17 @@ Route::post('product', [ProductController::class, 'store'])->name('product.store
 Route::put('{id}/product', [ProductController::class, 'update'])->name('product.update');
 Route::delete('{id}/product', [ProductController::class, 'delete'])->name('product.delete');
 
-    // Route::group(['middleware' => 'auth:api'], function () {
+
+Route::get('cart-product', [CartProductController::class, 'index'])->name('cart_product.index');
+Route::post('cart-product', [CartProductController::class, 'store'])->name('cart_product.store');
+Route::put('cart-product/{id}', [CartProductController::class, 'update'])->name('cart_product.update');
+Route::delete('cart-product/{id}', [CartProductController::class, 'delete'])->name('cart_product.delete');
+
+
+Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('cart', [CartController::class, 'store'])->name('cart.store');
+Route::put('cart/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('cart/{id}', [CartController::class, 'delete'])->name('cart.delete');   
+// Route::group(['middleware' => 'auth:api'], function () {
     //     Route::get('auth-user', [SocialiteController::class, 'authUser'])->name('socialite.auth-user');
     // });

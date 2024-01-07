@@ -17,7 +17,7 @@ return new class () extends Migration {
             $table->string('user_id')
                 ->default('');
             $table->string('email')
-                ->default('')  ;          
+                ->default('');          
             $table->timestamp('email_verified_at')
                 ->nullable();
             $table->string('password')
