@@ -19,9 +19,7 @@ class CategoryRequest extends FormRequest
         $categoryId = $this->route('id');
         return [
             'name' => [
-                'required',
                 'string',
-                'min:3',
                 'max:32',
                 Rule::unique('categories', 'name')
                     ->ignore($categoryId),
