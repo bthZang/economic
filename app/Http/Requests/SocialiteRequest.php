@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 
-class UserRequest extends FormRequest
+class SocialiteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,6 @@ class UserRequest extends FormRequest
             'email' => ['string', 'email', 'max:255'],
             'password' => ['string', 'min:6'],
             'is_admin' => ['bool'],
-            'user_id' => ['string'],
         ];
     }
 

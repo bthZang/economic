@@ -29,8 +29,6 @@ class AuthenticationController extends BaseController
                 return $this->withError(['Invalid credentials']);
             }
             $user = User::where('email', $request->email)->firstOrFail();
-            // $token = $request->user()->createToken($request->token_name);
-            // $token = $user->createToken('auth_token')->plainTextToken;
             return $this->withSuccess($user);
         } catch (Exception $exception) {
             return $this->withError($exception->getMessage());

@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -23,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_id',
         'email_verified_at',
         'is_admin',
     ];
@@ -47,8 +49,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function user(): HasMany
-    {
-        return $this->hasMany(SocialAccount::class, 'user_id');
-    }
+    // public function user(): HasOne
+    // {
+    //     return $this->hasOne(SocialAccount::class, 'user_id');
+    // }
 }

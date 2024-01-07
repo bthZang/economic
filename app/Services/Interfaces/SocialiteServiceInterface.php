@@ -2,8 +2,6 @@
 
 namespace App\Services\Interfaces;
 
-interface SocialiteServiceInterface
+interface SocialiteServiceInterface extends BaseServiceInterface
 {
-    public function redirect(string $provider);
-    public function callback(string $provider);
 }

@@ -21,8 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', [UserController::class, 'store'])->name('user.store');
 Route::post('login', [AuthenticationController::class, 'store'])->name('user.store');
 
-Route::get('auth/{provider}/redirect', [SocialiteController::class, 'redirect'])->name('socialite.redirect');
-Route::get('auth/{provider}/callback', [SocialiteController::class, 'callback'])->name('socialite.callback');
+Route::post('auth', [SocialiteController::class, 'store'])->name('user.store');
+// Route::get('auth/{provider}/callback', [SocialiteController::class, 'callback'])->name('socialite.callback');
+
 Route::get('category', [CategoryController::class, 'index'])->name('category.index');
 Route::put('{id}/category', [CategoryController::class, 'update'])->name('category.update');
 Route::delete('{id}/category', [CategoryController::class, 'delete'])->name('category.delete');
